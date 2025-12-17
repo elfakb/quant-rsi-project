@@ -22,7 +22,7 @@ The system stages:
 
 ---
 
-## 🏗 System Architecture
+## System Architecture
 
 The pipeline is designed as a decoupled, microservices-oriented architecture running entirely within a **Docker** environment.
 
@@ -56,12 +56,24 @@ The **Relative Strength Index (RSI)** is a momentum indicator used in technical 
 
 
 
+https://github.com/user-attachments/assets/b406f33f-b488-4bcc-8897-bd029917c085
+
+
+
+https://github.com/user-attachments/assets/77644c30-77b3-45c7-800d-f86442b236e0
+
+
+
+
+https://github.com/user-attachments/assets/64a9833e-bcd0-4331-b57c-6e9cb58e40af
+
+
 
 
 ## Running
 
 
-````markdown
+
 ##  Running the Pipeline
 
 To run the full simulation, you will need **4 separate terminal windows**. Follow this specific order to ensure all components connect correctly.
@@ -70,7 +82,7 @@ To run the full simulation, you will need **4 separate terminal windows**. Follo
 Start the Kafka, Zookeeper, and Spark containers in the background.
 ```bash
 docker-compose up -d
-
+```
 
 ### 2️⃣ Terminal 2: 
 
