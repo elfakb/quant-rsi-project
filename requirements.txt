@@ -1,0 +1,26 @@
+
+pyspark==3.5.3
+kafka-python
+pandas
+yfinance
+pyarrow
+numpy
+
+
+TERMİNAL 1
+
+1-docker-compose up -d
+
+
+TERMİNAL 2
+
+2-python producers/crypto_producer.py
+
+TERMİNAL 3
+3-python spark_engine/main_processor.py
+
+TERMİNAL 4
+streamlit run dashboard_app.py
+
+
+docker-compose down
