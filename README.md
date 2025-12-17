@@ -1,4 +1,4 @@
-# ⚡ QuantRSI: Real-Time Crypto Momentum Scanner
+#  QuantRSI: Real-Time Crypto Momentum Calculator
 
 ![Python](https://img.shields.io/badge/Python-3.9%2B-blue)
 ![Apache Kafka](https://img.shields.io/badge/Apache_Kafka-Streaming-black)
@@ -38,7 +38,7 @@ The pipeline is designed as a decoupled, microservices-oriented architecture run
            |                             |                              |
     [ Kafka Topic:                [ Stream Read ]                [ Kafka Topic:
       crypto-prices ]                                              crypto-analysis ]
-
+````
 ### What is RSI?
 The **Relative Strength Index (RSI)** is a momentum indicator used in technical analysis. It measures the speed and magnitude of a security's recent price changes to evaluate overvalued or undervalued conditions.
 
@@ -52,6 +52,11 @@ The **Relative Strength Index (RSI)** is a momentum indicator used in technical 
 **⚠️ Important Note:** This project is a **simulation** intended for educational and engineering purposes.
 
 ---
+## Demo
+
+
+
+
 
 ## Running
 
@@ -65,7 +70,7 @@ To run the full simulation, you will need **4 separate terminal windows**. Follo
 Start the Kafka, Zookeeper, and Spark containers in the background.
 ```bash
 docker-compose up -d
-````
+
 
 ### 2️⃣ Terminal 2: 
 
@@ -89,16 +94,6 @@ Launch the web interface to visualize the data.
 
 ```bash
 streamlit run dashboard_app.py
-```
-
------
-
-### Stopping the Project
-
-To stop the simulation and remove the containers (cleaning up resources):
-
-```bash
-docker-compose down
 ```
 
 
