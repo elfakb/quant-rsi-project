@@ -11,7 +11,6 @@
 ---
 
 
-
 ##  Project Overview
 
 QuantRSI is a real-time data pipeline built to simulate algorithmic trading. It processes high-frequency cryptocurrency data to detect trading opportunities instantly.
@@ -23,21 +22,42 @@ The system stages:
 
 ---
 
-## System Architecture
+## 🏗 System Architecture
 
-
-The data flows through the system in a unidirectional pipeline:
+The pipeline is designed as a decoupled, microservices-oriented architecture running entirely within a **Docker** environment.
 
 ```mermaid
 graph LR
-    A[Market Simulator] -->|Raw Prices| B(Kafka: crypto-prices)
-    B -->|Stream Read| C{Spark Engine}
-    C -->|Calculate RSI| D(Kafka: crypto-analysis)
-    D -->|Consume Signals| E[QuantGrid Dashboard]
+    subgraph Docker_Host [🐳 Docker Compose Environment]
+        style Docker_Host fill:#f9f9f9,stroke:#333,stroke-width:2px,color:black
+        
+        subgraph Ingestion [1. Ingestion Layer]
+            style Ingestion fill:#e3f2fd,stroke:#1565c0,color:black
+            A[🐍 Market Sim<br/>(Producer)]
+        end
 
----
+        subgraph Message_Bus [2. Messaging Layer]
+            style Message_Bus fill:#fff3e0,stroke:#ef6c00,color:black
+            B[(Kafka: Prices)]
+            D[(Kafka: Analysis)]
+        end
 
-## 🧠 Technical Concepts
+        subgraph Processing [3. Processing Layer]
+            style Processing fill:#e8f5e9,stroke:#2e7d32,color:black
+            C[⚡ Spark Engine<br/>(Structured Streaming)]
+        end
+
+        subgraph Visualization [4. Presentation Layer]
+            style Visualization fill:#f3e5f5,stroke:#7b1fa2,color:black
+            E[ QuantGrid<br/>(Streamlit)]
+        end
+
+        A -->|JSON Stream| B
+        B -->|Subscribe| C
+        C -->|Windowed Aggregation| D
+        D -->|Consume Signals| E
+    end
+
 
 ### What is RSI?
 The **Relative Strength Index (RSI)** is a momentum indicator used in technical analysis. It measures the speed and magnitude of a security's recent price changes to evaluate overvalued or undervalued conditions.
@@ -55,11 +75,6 @@ The **Relative Strength Index (RSI)** is a momentum indicator used in technical 
 
 ## Running
 
-Harika. Senin verdiğin sıralamayı koruyarak, bu komutların ne işe yaradığını da kısaca açıklayan, çok temiz ve profesyonel bir **"Running the Pipeline"** bölümü hazırladım.
-
-Bunu `README.md` dosyasındaki eski *Installation & Running* kısmının yerine yapıştırabilirsin.
-
------
 
 ````markdown
 ##  Running the Pipeline
@@ -98,7 +113,7 @@ streamlit run dashboard_app.py
 
 -----
 
-### 🛑 Stopping the Project
+### Stopping the Project
 
 To stop the simulation and remove the containers (cleaning up resources):
 
